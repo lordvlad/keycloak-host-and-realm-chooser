@@ -17,7 +17,7 @@ function getHostAndRealm(mode: Exclude<AuthProviderProps['response_mode'], undef
   const state = oidcParams!.get("state")
   const [host, realm] = atob(kcInstance).split("=") as [string, string]
 
-  const req = JSON.parse(localStorage.getItem(`oidc.${state}`) || "{}")
+  const req = JSON.parse(localStorage.getItem(`oidc.${state}`) || "null")
   if (req) {
     req.authority = `${host}/realms/${realm}`
     const redirectUri = new URL(req.redirect_uri as string)
